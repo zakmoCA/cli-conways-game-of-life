@@ -70,7 +70,7 @@ int CountAliveNeighbors(int row, int col)
     for (int dx = -1; dx <= 1; ++dx)
     {
       if (dy == 0 && dx == 0)
-        continue; // Skip the cell itself
+        continue;
       int newY = row + dy, newX = col + dx;
       if (newY >= 0 && newY < gridHeight && newX >= 0 && newX < gridWidth && currentGrid[newY][newX] == CellAlive)
       {
