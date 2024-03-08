@@ -37,3 +37,29 @@ void ResetCursorPosition()
 {
   printf("\033[H");
 }
+
+void InitializeGrid()
+{
+  for (int i = 0; i < gridHeight; ++i)
+  {
+    for (int j = 0; j < gridWidth; ++j)
+    {
+      currentGrid[i][j] = (rand() % 2) ? CellAlive : CellDead;
+    }
+  }
+}
+
+void DisplayGrid()
+{
+  ResetCursorPosition();
+  ClearTerminalScreen();
+  for (int i = 0; i < gridHeight; ++i)
+  {
+    for (int j = 0; j < gridWidth; ++j)
+    {
+      printf(currentGrid[i][j] == CellAlive ? FILLED_CELL FILLED_CELL : EMPTY_CELL);
+    }
+    printf("\n");
+  }
+  fflush(stdout);
+}
