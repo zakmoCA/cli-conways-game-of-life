@@ -22,6 +22,7 @@ To run the Game of Life simulation, follow these steps:
 
 Open your terminal (command-line) and enter the following:
 `git clone https://github.com/your-username/game-of-life.git`
+
 2. Navigate to the project directory and:
 
 `cd game-of-life`
