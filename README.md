@@ -6,8 +6,11 @@ This is a terminal-based implementation of Conway's Game of Life written in C. T
 The rules governing the Game of Life are as follows:
 
 1. Any live cell with fewer than two live neighbors dies, as if by underpopulation.
+
 2. Any live cell with two or three live neighbors lives on to the next generation.
+
 3. Any live cell with more than three live neighbors dies, as if by overpopulation.
+
 4. Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
 
 There is a particularly great youtube video which explains it from a particularly great youtuber, one of my favourites, from the channel 'Veritasium'. The video itself is regarding [Mathematics' fundamental flaw](https://www.youtube.com/watch?v=HeQX2HjkcNo) (word to Gödel!) and is very interesting, watch from 01:05 - 03:31 of the video if you're interested.
