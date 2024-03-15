@@ -7,62 +7,62 @@
 #define EMPTY_CELL " "
 #define FILLED_CELL "█"
 
-int gridWidth, gridHeight;
-
 typedef enum
 {
-  CellAlive,
-  CellDead
+  CELL_DEAD,
+  CELL_ALIVE
 } CellState;
+
+int gridWidth, gridHeight;
 CellState **currentGrid, **nextGrid;
 
-void ClearTerminalScreen()
+void clearTerminalScreen()
 {
   printf("\033[2J");
 }
 
-void HideTerminalCursor()
+void hideTerminalCursor()
 {
   printf("\033[?25l");
 }
 
-void ShowTerminalCursor()
+void showTerminalCursor()
 {
   printf("\033[?25h");
 }
 
-void ResetCursorPosition()
+void resetCursorPosition()
 {
   printf("\033[H");
 }
 
-void InitializeGrid()
+void initializeGrid()
 {
   for (int i = 0; i < gridHeight; ++i)
   {
     for (int j = 0; j < gridWidth; ++j)
     {
-      currentGrid[i][j] = (rand() % 2) ? CellAlive : CellDead;
+      currentGrid[i][j] = (rand() % 2) ? CELL_ALIVE : CELL_DEAD;
     }
   }
 }
 
-void DisplayGrid()
+void displayGrid()
 {
-  ResetCursorPosition();
-  ClearTerminalScreen();
+  resetCursorPosition();
+  clearTerminalScreen();
   for (int i = 0; i < gridHeight; ++i)
   {
     for (int j = 0; j < gridWidth; ++j)
     {
-      printf(currentGrid[i][j] == CellAlive ? FILLED_CELL FILLED_CELL : EMPTY_CELL);
+      printf(currentGrid[i][j] == CELL_ALIVE ? FILLED_CELL FILLED_CELL : EMPTY_CELL);
     }
     printf("\n");
   }
   fflush(stdout);
 }
 
-int CountAliveNeighbors(int row, int col)
+int countAliveNeighbors(int row, int col)
 {
   int aliveNeighbors = 0;
   for (int dy = -1; dy <= 1; ++dy)
@@ -72,7 +72,8 @@ int CountAliveNeighbors(int row, int col)
       if (dy == 0 && dx == 0)
         continue;
       int newY = row + dy, newX = col + dx;
-      if (newY >= 0 && newY < gridHeight && newX >= 0 && newX < gridWidth && currentGrid[newY][newX] == CellAlive)
+      if (newY >= 0 && newY < gridHeight && newX >= 0 && newX < gridWidth &&
+          currentGrid[newY][newX] == CELL_ALIVE)
       {
         aliveNeighbors++;
       }
@@ -81,7 +82,37 @@ int CountAliveNeighbors(int row, int col)
   return aliveNeighbors;
 }
 
-void AllocateMemoryForGrids()
+void updateGrid()
+{
+  for (int i = 0; i < gridHeight; ++i)
+  {
+    for (int j = 0; j < gridWidth; ++j)
+    {
+      int aliveNeighbors = countAliveNeighbors(i, j);
+      if (currentGrid[i][j] == CELL_ALIVE)
+      {
+        nextGrid[i][j] = (aliveNeighbors == 2 || aliveNeighbors == 3) ? CELL_ALIVE : CELL_DEAD;
+      }
+      else
+      {
+        nextGrid[i][j] = (aliveNeighbors == 3) ? CELL_ALIVE : CELL_DEAD;
+      }
+    }
+  }
+  CellState **temp = currentGrid;
+  currentGrid = nextGrid;
+  nextGrid = temp;
+}
+
+void getTerminalSize()
+{
+  struct winsize ws;
+  ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws);
+  gridWidth = ws.ws_col / 2;
+  gridHeight = ws.ws_row;
+}
+
+void allocateMemoryForGrids()
 {
   currentGrid = malloc(gridHeight * sizeof(CellState *));
   nextGrid = malloc(gridHeight * sizeof(CellState *));
@@ -92,7 +123,7 @@ void AllocateMemoryForGrids()
   }
 }
 
-void FreeMemoryForGrids()
+void freeMemoryForGrids()
 {
   for (int i = 0; i < gridHeight; ++i)
   {
@@ -103,50 +134,20 @@ void FreeMemoryForGrids()
   free(nextGrid);
 }
 
-void UpdateGrid()
-{
-  for (int i = 0; i < gridHeight; ++i)
-  {
-    for (int j = 0; j < gridWidth; ++j)
-    {
-      int aliveNeighbors = CountAliveNeighbors(i, j);
-      if (currentGrid[i][j] == CellAlive)
-      {
-        nextGrid[i][j] = (aliveNeighbors == 2 || aliveNeighbors == 3) ? CellAlive : CellDead;
-      }
-      else
-      {
-        nextGrid[i][j] = (aliveNeighbors == 3) ? CellAlive : CellDead;
-      }
-    }
-  }
-  CellState **temp = currentGrid;
-  currentGrid = nextGrid;
-  nextGrid = temp;
-}
-
-void GetTerminalSize()
-{
-  struct winsize ws;
-  ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws);
-  gridWidth = ws.ws_col / 2;
-  gridHeight = ws.ws_row;
-}
-
 int main()
 {
-  GetTerminalSize();
-  AllocateMemoryForGrids();
-  InitializeGrid();
-  HideTerminalCursor();
-  atexit(FreeMemoryForGrids);
-  atexit(ShowTerminalCursor);
+  getTerminalSize();
+  allocateMemoryForGrids();
+  initializeGrid();
+  hideTerminalCursor();
+  atexit(freeMemoryForGrids);
+  atexit(showTerminalCursor);
 
   while (1)
   {
-    DisplayGrid();
+    displayGrid();
     usleep(100 * 1000);
-    UpdateGrid();
+    updateGrid();
   }
 
   return 0;
