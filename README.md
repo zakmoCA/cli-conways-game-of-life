@@ -21,11 +21,11 @@ To run the Game of Life simulation, follow these steps:
 1. Clone the repository to your local machine:
 
 Open your terminal (command-line) and enter the following:
-`git clone https://github.com/your-username/game-of-life.git`
+`git clone https://github.com/zakmoCA/cli-conways-game-of-life.git`
 
 2. Navigate to the project directory and:
 
-`cd game-of-life`
+`cd cli-conways-``game-of-life`
 
 3. Compile the program by entering the following. Keep in mind 'game' can be anything you want:
 
