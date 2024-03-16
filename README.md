@@ -25,7 +25,7 @@ Open your terminal (command-line) and enter the following:
 
 2. Navigate to the project directory and:
 
-`cd cli-conways-``game-of-life`
+`cd cli-conways-game-of-life`
 
 3. Compile the program by entering the following. Keep in mind 'game' can be anything you want:
 
