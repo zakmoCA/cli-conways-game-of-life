@@ -1,9 +1,9 @@
 # README
 
-This is a terminal-based implementation of Conway's Game of Life written in C. The [Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) is a cellular automaton that simulates the life cycle of a population of cells on a two-dimensional grid, based on a set of rules.
+This is a terminal-based implementation of Conway's Game of Life written in C. The [Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) is a cellular automaton that simulates the life cycle of a population of cells on a two-dimensional grid, based on a few rules.
 
 ## Rules
-The rules governing the Game of Life are as follows:
+The rules are as follows:
 
 1. Any live cell with fewer than two live neighbors dies, as if by underpopulation.
 
@@ -13,7 +13,7 @@ The rules governing the Game of Life are as follows:
 
 4. Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
 
-There is a particularly great youtube video which explains it from a particularly great youtuber, one of my favourites, from the channel 'Veritasium'. The video itself is regarding [Mathematics' fundamental flaw](https://www.youtube.com/watch?v=HeQX2HjkcNo) (word to Gödel!) and is very interesting, watch from 01:05 - 03:31 of the video if you're interested.
+This great [video](https://www.youtube.com/watch?v=HeQX2HjkcNo) explains it and is from the great channel 'Veritasium'. The video itself is regarding a different topic and is interesting, but watch from 01:05 - 03:31 of the video to get an idea about Conway's Game of Life.
 
 ## Getting Started
 To run the Game of Life simulation, follow these steps:
@@ -31,9 +31,14 @@ Open your terminal (command-line) and enter the following:
 
 `gcc -o game main.c`
 
-4. Run the compiled program by ow entering the following:
+4. Run the compiled program by now entering the following:
 
 `./game`
 
 
 The simulation will start running in your terminal and display the initial random grid and update it according to the Game of Life rules. The simulation will continue running until you stop it manually.
+
+## Next Steps
+
+I want to add functionality for the user to set the initial state themselves 
+with a GUI to actually simulate the real game, as right now the initial state is random.
