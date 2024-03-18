@@ -2,6 +2,8 @@
 
 This is a terminal-based implementation of Conway's Game of Life written in C. The [Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) is a cellular automaton that simulates the life cycle of a population of cells on a two-dimensional grid, based on a few rules.
 
+![An image of a running simulation of Conways Game of Life](./conway.png)
+
 ## Rules
 The rules are as follows:
 
@@ -13,7 +15,7 @@ The rules are as follows:
 
 4. Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
 
-This great [video](https://www.youtube.com/watch?v=HeQX2HjkcNo) explains it and is from the great channel 'Veritasium'. The video itself is regarding a different topic and is interesting, but watch from 01:05 - 03:31 of the video to get an idea about Conway's Game of Life.
+This [great video](https://www.youtube.com/watch?v=HeQX2HjkcNo) explains it and is from the great channel 'Veritasium'. The video itself is regarding a different topic and is interesting, but watch from 01:05 - 03:31 of the video to get an idea about Conway's Game of Life.
 
 ## Getting Started
 To run the Game of Life simulation, follow these steps:
