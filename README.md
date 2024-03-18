@@ -23,7 +23,7 @@ To run the Game of Life simulation, follow these steps:
 Open your terminal (command-line) and enter the following:
 `git clone https://github.com/zakmoCA/cli-conways-game-of-life.git`
 
-2. Navigate to the project directory and:
+2. Navigate to the project directory:
 
 `cd cli-conways-game-of-life`
 
