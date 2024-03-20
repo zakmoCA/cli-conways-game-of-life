@@ -44,3 +44,9 @@ The simulation will start running in your terminal and display the initial rando
 
 I want to add functionality for the user to set the initial state themselves 
 with a GUI to actually simulate the real game, as right now the initial state is random.
+
+### Todo
+
+- [ ] Pick GUI.
+- [ ] Add board initialisation via GUI functionality.
+- [ ] Package game and add run instrcutions to readme.
