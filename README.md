@@ -18,7 +18,8 @@ The rules are as follows:
 This [great video](https://www.youtube.com/watch?v=HeQX2HjkcNo) explains it and is from the great channel 'Veritasium'. The video itself is regarding a different topic and is interesting, but watch from 01:05 - 03:31 of the video to get an idea about Conway's Game of Life.
 
 ## Getting Started
-To run the Game of Life simulation, follow these steps:
+
+Running this will require a C-compiler of-course. I use Clang on macOS, which can be invoked by the `gcc` command.
 
 1. Clone the repository to your local machine:
 
@@ -29,13 +30,12 @@ Open your terminal (command-line) and enter the following:
 
 `cd cli-conways-game-of-life`
 
-3. Compile the program by entering the following. Keep in mind 'game' can be anything you want:
+3. Compile the program by entering the following (note: 'game' can be any name you choose for the executable):
 
 `gcc -o game main.c`
 
 4. Run the compiled program by now entering the following:
 
 `./game`
-
 
 The simulation will start running in your terminal and display the initial random grid and update it according to the Game of Life rules. The simulation will continue running until you stop it manually.
